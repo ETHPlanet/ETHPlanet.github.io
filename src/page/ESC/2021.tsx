@@ -1,10 +1,14 @@
 import { component, mixin, createCell, Fragment } from 'web-cell';
+import { observer } from 'mobx-web-cell';
 
 import { NavBar } from 'boot-cell/source/Navigator/NavBar';
 import { NavLink } from 'boot-cell/source/Navigator/Nav';
 
+import { Gallery } from '../../component/Gallery';
 import style from './2021.module.less';
+import { activity } from '../../model';
 
+@observer
 @component({
     tagName: 'esc2021-page',
     renderTarget: 'children'
@@ -13,10 +17,14 @@ export class ESC2021Page extends mixin() {
     connectedCallback() {
         this.classList.add(style.box);
 
+        activity.getAll();
+
         super.connectedCallback();
     }
 
     render() {
+        const { allItems } = activity;
+
         return (
             <>
                 <NavBar
@@ -107,6 +115,14 @@ export class ESC2021Page extends mixin() {
                     <a>申请主办活动</a>
                     <a>申请成为赞助商</a>
                 </nav>
+
+                <Gallery
+                    className="w-75 my-5"
+                    list={allItems.map(({ banner: { url }, name }) => ({
+                        image: url,
+                        title: name
+                    }))}
+                />
             </>
         );
     }

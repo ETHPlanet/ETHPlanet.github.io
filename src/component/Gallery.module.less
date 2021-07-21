@@ -1,0 +1,22 @@
+.navItem {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--secondary);
+    &:not(:only-child) {
+        cursor: pointer;
+    }
+    &:nth-child(1) {
+        background: #ffdb8d;
+    }
+    &:nth-child(2) {
+        background: rgb(253, 231, 172);
+    }
+    &:nth-child(3) {
+        background: rgb(255, 235, 194);
+    }
+    &:nth-child(4) {
+        background: rgb(253, 242, 214);
+    }
+}
