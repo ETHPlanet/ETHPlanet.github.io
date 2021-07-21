@@ -1,52 +1,16 @@
 import { createCell, Fragment } from 'web-cell';
 import { CellRouter } from 'cell-router/source';
-import { NavBar } from 'boot-cell/source/Navigator/NavBar';
-import { NavLink } from 'boot-cell/source/Navigator/Nav';
 
 import { history } from '../model';
 import WebCell_0 from '../image/WebCell-0.png';
 
-import { Hello } from './Hello';
+import { ESC2021Page } from './ESC/2021';
 import { CellClock } from './Clock';
-
-const menu = [
-    {
-        title: 'Hello',
-        href: 'hello'
-    },
-    {
-        title: 'Clock',
-        href: 'clock'
-    },
-    {
-        title: 'GitHub source',
-        href: 'https://github.com/EasyWebApp/scaffold'
-    }
-];
 
 export function PageFrame() {
     return (
         <>
-            <NavBar
-                narrow
-                expand="md"
-                theme="dark"
-                background="dark"
-                brand={
-                    <img
-                        alt="WebCell scaffold"
-                        src={WebCell_0}
-                        style={{ width: '2rem' }}
-                    />
-                }
-            >
-                {menu.map(({ title, ...props }) => (
-                    <NavLink {...props}>{title}</NavLink>
-                ))}
-            </NavBar>
-
             <CellRouter
-                className="container"
                 style={{ minHeight: '60vh' }}
                 history={history}
                 routes={[
@@ -56,7 +20,7 @@ export function PageFrame() {
                     },
                     {
                         paths: ['hello', ''],
-                        component: Hello
+                        component: ESC2021Page
                     }
                 ]}
             />
