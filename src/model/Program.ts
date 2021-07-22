@@ -9,6 +9,7 @@ import {
 import { buildURLData } from 'web-utility/source/URL';
 
 import { User } from './User';
+import { Organization } from './Organization';
 import { Activity } from './Activity';
 
 export interface Program extends BaseData {
@@ -26,7 +27,7 @@ export interface Program extends BaseData {
     verified: boolean;
     category: NestedData<any>;
     project?: NestedData<any>;
-    organization?: NestedData<any>;
+    organization?: NestedData<Organization>;
 }
 
 export class ProgramModel extends CollectionModel<
