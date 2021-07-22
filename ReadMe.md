@@ -1,8 +1,8 @@
 ![](src/image/WebCell-0.png)
 
-# WebCell scaffold
+# ETH Planet PWA
 
-App Project scaffold of **WebCell** v2
+Official Web-site of **ETH Planet** based on **WebCell** v2
 
 https://web-cell.dev/scaffold/
 

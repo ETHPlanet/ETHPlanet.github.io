@@ -1,18 +1,18 @@
 {
-  "name": "WebCell scaffold",
-  "short_name": "WC Demo",
+  "name": "ETH Planet",
+  "short_name": "ETH Planet",
   "start_url": ".",
-  "description": "App Project scaffold of WebCell v2",
+  "description": "Official Web-site of ETH Planet",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",
-  "lang": "en-US",
+  "lang": "zh-CN",
   "dir": "ltr",
   "theme_color": "rgba(0,0,0,0.5)",
   "background_color": "transparent",
   "icons": [
     {
-      "src": "image/WebCell-0.png",
+      "src": "https://github.com/ETHPlanet.png",
       "type": "image/png",
       "sizes": "300x300"
     }
