@@ -168,6 +168,45 @@ export class ESC2021Page extends mixin() {
                     Apply to Speak at ESC 2020
                 </p>
                 {this.renderSpeakers()}
+
+                <section className="row mx-0 my-5">
+                    <div
+                        className="col-6 p-5 d-flex flex-column"
+                        style={{ background: 'rgb(255, 235, 199)' }}
+                    >
+                        <h2 className="h4 text-warning">
+                            展示机会 加入 ESC2021 成为活动发起者
+                        </h2>
+                        我们可以帮助活动发起者：
+                        <ul className="flex-fill">
+                            <li>
+                                在ESC上获得活动露出或推荐，提升您在区块链行业的品牌知名度
+                            </li>
+                            <li>
+                                与以太坊和区块链社区的数千名开发者、思想领袖和决策者建立联系
+                            </li>
+                        </ul>
+                        <footer>
+                            <Button color="warning">申请成为活动发起者</Button>
+                        </footer>
+                    </div>
+                    <div className="col-6 p-5 d-flex flex-column bg-info">
+                        <h2 className="h4 text-primary">
+                            赞助机会 为什么要赞助 ESC2021
+                        </h2>
+                        我们可以帮助赞助商：
+                        <ul className="flex-fill">
+                            <li>
+                                与以太坊和区块链社区的数千名开发者、思想领袖和决策者建立联系
+                            </li>
+                            <li>提升您作为区块链行业领导者的品牌知名度</li>
+                            <li>与志同道合的行业人士建立新业务</li>
+                        </ul>
+                        <footer>
+                            <Button color="primary">申请成为赞助商</Button>
+                        </footer>
+                    </div>
+                </section>
             </>
         );
     }
