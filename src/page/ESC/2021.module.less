@@ -63,10 +63,17 @@
         display: flex;
         justify-content: center;
         margin-top: -3rem;
+        text-align: center;
         text-transform: uppercase;
         a {
             display: block;
-            padding: 4rem 5rem;
+            padding: 1rem;
+            @media (min-width: 576px) {
+                padding: 1.5rem;
+            }
+            @media (min-width: 768px) {
+                padding: 4rem;
+            }
             &:link {
                 text-decoration: none;
                 cursor: pointer;

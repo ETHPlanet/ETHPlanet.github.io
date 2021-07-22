@@ -43,7 +43,9 @@ export class ESC2021Page extends mixin() {
             <section className="container">
                 <ul className="list-unstyled row text-uppercase text-center">
                     {allItems.map(({ mentors: [speaker] }) => (
-                        <li className={`col-3 mt-5 ${style.speaker}`}>
+                        <li
+                            className={`col-sm-6 col-md-3 mt-5 ${style.speaker}`}
+                        >
                             <Image
                                 className={style.avatar}
                                 src={speaker.avatar?.url}
@@ -89,7 +91,7 @@ export class ESC2021Page extends mixin() {
                         </h2>
                         <ul className="list-unstyled row">
                             {list?.map(({ organization: { logo } }) => (
-                                <li className="col-3 my-4 d-flex justify-content-center align-items-center">
+                                <li className="col-sm-6 col-md-3 my-4 d-flex justify-content-center align-items-center">
                                     <Image
                                         className={style.partner}
                                         fluid
@@ -106,7 +108,7 @@ export class ESC2021Page extends mixin() {
 
     renderLinkGroup({ title, list }) {
         return (
-            <section className="col-4">
+            <section className="col-12 col-sm-4 mb-4">
                 <h2 className="h5">{title}</h2>
                 <ul className="list-unstyled m-0">
                     {list.map(({ href, title }) => (
@@ -150,11 +152,11 @@ export class ESC2021Page extends mixin() {
                     >
                         关于我们
                     </NavLink>
-                    <NavLink>活动日程</NavLink>
-                    <NavLink>合作通道</NavLink>
+                    <NavLink href="#latest-activities">活动日程</NavLink>
+                    <NavLink href="#become-organizer">合作通道</NavLink>
                 </NavBar>
                 <header className="row m-0">
-                    <div className="col-3 offset-3 py-5 text-uppercase">
+                    <div className="col-12 col-md-3 offset-md-2 px-5 px-md-0 py-5 text-uppercase">
                         <h1 className="text-primary">
                             Ethereum
                             <br />
@@ -166,18 +168,18 @@ export class ESC2021Page extends mixin() {
                             <strong>8 weeks, 53 days,</strong> the largest
                             online festival for the Ethereum community.
                         </p>
-                        <p>
+                        <p className="m-0">
                             Bringing Ethereum builders together to shape the
                             future of Ethereum.
                         </p>
                     </div>
                 </header>
                 <section className="row m-0 bg-light">
-                    <div className="col-6 p-5">
+                    <div className="col-12 col-sm-6 px-5 pt-5 pb-sm-5">
                         <h2 className="text-uppercase text-primary">
                             About Ethereum Summer Camp 2021
                         </h2>
-                        <p className="text-muted">
+                        <p className="text-muted m-0">
                             Ethereum Summer Camp is the largest online festival
                             for the Ethereum community with a series
                             oflive-streamed events including dozens of events,
@@ -187,7 +189,7 @@ export class ESC2021Page extends mixin() {
                             all free, all summer long, and everyone's invited!
                         </p>
                     </div>
-                    <ul className="col-6 p-5 list-unstyled text-muted">
+                    <ul className="col-12 col-sm-6 p-5 list-unstyled text-muted">
                         <li className="my-3">
                             Be the first to learn about the exciting
                             announcements and the latest updates from Ethereum
@@ -207,19 +209,25 @@ export class ESC2021Page extends mixin() {
                         </li>
                     </ul>
                 </section>
-                <nav className={style.outNav}>
-                    <a>注册报名</a>
+                <nav className={`row m-0 px-md-5 ${style.outNav}`}>
+                    <a className="col-6 col-sm-3">注册报名</a>
                     <a
+                        className="col-6 col-sm-3"
                         target="_blank"
                         href="https://discord.com/invite/GF7j9E8"
                     >
                         加入 Discord 社区
                     </a>
-                    <a>申请主办活动</a>
-                    <a>申请成为赞助商</a>
+                    <a className="col-6 col-sm-3" href="#become-organizer">
+                        申请主办活动
+                    </a>
+                    <a className="col-6 col-sm-3" href="#become-sponsor">
+                        申请成为赞助商
+                    </a>
                 </nav>
 
                 <Gallery
+                    id="latest-activities"
                     className="container my-5"
                     list={allItems.map(({ banner: { url }, name }) => ({
                         image: url,
@@ -236,7 +244,8 @@ export class ESC2021Page extends mixin() {
 
                 <section className="row mx-0 my-5">
                     <div
-                        className="col-6 p-5 d-flex flex-column"
+                        id="become-organizer"
+                        className="col-12 col-sm-6 p-5 d-flex flex-column"
                         style={{ background: 'rgb(255, 235, 199)' }}
                     >
                         <h2 className="h4 text-warning">
@@ -255,7 +264,10 @@ export class ESC2021Page extends mixin() {
                             <Button color="warning">申请成为活动发起者</Button>
                         </footer>
                     </div>
-                    <div className="col-6 p-5 d-flex flex-column bg-info">
+                    <div
+                        id="become-sponsor"
+                        className="col-12 col-sm-6 p-5 d-flex flex-column bg-info"
+                    >
                         <h2 className="h4 text-primary">
                             赞助机会 为什么要赞助 ESC2021
                         </h2>
@@ -276,11 +288,11 @@ export class ESC2021Page extends mixin() {
                 {this.renderPartners()}
 
                 <section className="text-center">
-                    <h2 className="h3 text-primary my-3">FAQ</h2>
+                    <h2 className="h3 text-primary my-5">FAQ</h2>
 
                     {QAs.map(({ question, answer }, index) => (
                         <div
-                            className={`p-4 bg-${
+                            className={`p-5 bg-${
                                 index % 2 ? 'white' : 'light'
                             }`}
                         >
@@ -291,19 +303,25 @@ export class ESC2021Page extends mixin() {
                 </section>
 
                 <section className="container py-5 text-uppercase">
-                    <div className="w-75 row d-inline-flex align-top">
-                        {footer_links.map(this.renderLinkGroup)}
+                    <div className="row">
+                        <form className="col-12 col-md-3 m-0 order-md-1">
+                            <h2 className="h5">
+                                Stay in the loop and sign up for our newsletter
+                            </h2>
+                            <Field
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                            />
+                            <p className="mb-5 m-md-0 text-muted">
+                                Help us by donating to ETHPlanet. org and let’s
+                                make Ethereum mainstream, together
+                            </p>
+                        </form>
+                        <div className="col-12 col-md-9 row order-md-0">
+                            {footer_links.map(this.renderLinkGroup)}
+                        </div>
                     </div>
-                    <form className="w-25 m-0 d-inline-block">
-                        <h2 className="h5">
-                            Stay in the loop and sign up for our newsletter
-                        </h2>
-                        <Field type="email" name="email" placeholder="Email" />
-                        <p className="m-0 text-muted">
-                            Help us by donating to ETHPlanet. org and let’s make
-                            Ethereum mainstream, together
-                        </p>
-                    </form>
                 </section>
 
                 <footer className="p-3 font-weight-bold text-uppercase text-center">
