@@ -1,11 +1,39 @@
 @import (reference) '../../common.less';
 
 .box {
+    --primary: #008aff;
+    --warning: #ffc107;
     --info: #a9ecff;
+    display: block;
+    background-image: url(./background-top.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: contain;
 
     :global {
+        .text-primary {
+            color: var(--primary);
+        }
+        .text-warning {
+            color: var(--warning);
+        }
+        .text-info {
+            color: var(--info);
+        }
+        .bg-info {
+            background: var(--info) !important;
+        }
         .btn {
             border-radius: 0;
+            &.btn-primary {
+                border: var(--primary);
+                background: var(--primary);
+            }
+            &.btn-warning {
+                border: var(--warning);
+                background: var(--warning);
+                color: white;
+            }
             &.btn-info {
                 border: var(--info);
                 background: var(--info);
