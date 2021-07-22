@@ -16,13 +16,16 @@ export function Gallery({ className, list, ...props }: GalleryProps) {
     list = list.slice(0, 4);
 
     return (
-        <section className={classNames('row', 'mx-auto', className)} {...props}>
-            <CarouselView className="col-9">
+        <section
+            className={classNames('row', 'mx-auto', style.box, className)}
+            {...props}
+        >
+            <CarouselView className="col-9 p-0">
                 {list.map(({ image }) => (
                     <CarouselItem image={image} />
                 ))}
             </CarouselView>
-            <ul className="list-unstyled m-0 col-3 d-flex flex-column">
+            <ul className="list-unstyled m-0 p-0 col-3 d-flex flex-column">
                 {list.map(({ title }, index) => (
                     <li
                         className={style.navItem}

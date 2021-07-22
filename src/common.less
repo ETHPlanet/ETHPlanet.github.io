@@ -1,0 +1,19 @@
+.scroll-bar(@color, @hoverColor) {
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars
+    scrollbar-width: thin;
+    scrollbar-color: @color;
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 0.25rem;
+        background: @color;
+    }
+    &:hover {
+        scrollbar-color: @hoverColor;
+        &::-webkit-scrollbar-thumb {
+            background: @hoverColor;
+        }
+    }
+}

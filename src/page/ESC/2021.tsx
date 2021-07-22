@@ -1,12 +1,15 @@
 import { component, mixin, createCell, Fragment } from 'web-cell';
 import { observer } from 'mobx-web-cell';
+import classNames from 'classnames';
 
+import { Image } from 'boot-cell/source/Media/Image';
+import { Button } from 'boot-cell/source/Form/Button';
 import { NavBar } from 'boot-cell/source/Navigator/NavBar';
 import { NavLink } from 'boot-cell/source/Navigator/Nav';
 
 import { Gallery } from '../../component/Gallery';
 import style from './2021.module.less';
-import { activity } from '../../model';
+import { activity, program } from '../../model';
 
 @observer
 @component({
@@ -18,8 +21,43 @@ export class ESC2021Page extends mixin() {
         this.classList.add(style.box);
 
         activity.getAll();
+        program.getList({ activity: '1', type: 'lecture' });
 
         super.connectedCallback();
+    }
+
+    renderSpeakers() {
+        const { allItems } = program;
+
+        return (
+            <>
+                <ul className="list-unstyled row w-75 mx-auto text-uppercase text-center">
+                    {allItems.map(({ mentors: [speaker] }) => (
+                        <li
+                            className={classNames(
+                                'col-3',
+                                'mt-5',
+                                style.speaker
+                            )}
+                        >
+                            <Image
+                                className={style.avatar}
+                                src={speaker.avatar?.url}
+                            />
+                            <h3 className="h4 my-2">{speaker.name}</h3>
+                            <p className={style.summary}>{speaker.summary}</p>
+                        </li>
+                    ))}
+                </ul>
+                <Button
+                    className={style.loadSpeaker}
+                    color="info"
+                    onClick={() => program.getList()}
+                >
+                    View more
+                </Button>
+            </>
+        );
     }
 
     render() {
@@ -123,6 +161,13 @@ export class ESC2021Page extends mixin() {
                         title: name
                     }))}
                 />
+                <h2 className="h3 text-uppercase text-center text-warning my-3">
+                    These Are the First Confirmed Speakers for ESC 2020
+                </h2>
+                <p className={style.speakerSubTitle}>
+                    Apply to Speak at ESC 2020
+                </p>
+                {this.renderSpeakers()}
             </>
         );
     }

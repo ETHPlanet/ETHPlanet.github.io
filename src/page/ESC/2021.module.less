@@ -1,4 +1,17 @@
+@import (reference) '../../common.less';
+
 .box {
+    --info: #a9ecff;
+
+    :global {
+        .btn {
+            border-radius: 0;
+            &.btn-info {
+                border: var(--info);
+                background: var(--info);
+            }
+        }
+    }
     .outNav {
         display: flex;
         justify-content: center;
@@ -24,5 +37,44 @@
                 background: #eaf6fd;
             }
         }
+    }
+    .speakerSubTitle {
+        text-transform: uppercase;
+        font-weight: bold;
+        background: #ffdb8d;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        width: max-content;
+        margin: auto;
+    }
+    .speaker {
+        .avatar {
+            width: 8rem;
+            height: 8rem;
+            border-radius: 50%;
+        }
+        &:nth-child(odd) {
+            .avatar {
+                box-shadow: 1rem 0 0 rgb(255, 244, 220);
+            }
+        }
+        &:nth-child(even) {
+            .avatar {
+                box-shadow: 1rem 0 0 rgb(231, 249, 255);
+            }
+        }
+        .summary {
+            word-break: break-all;
+            word-wrap: break-word;
+            height: 10rem;
+            overflow: auto;
+            .scroll-bar(var(--light), var(--secondary));
+        }
+    }
+    .loadSpeaker {
+        display: block;
+        width: max-content;
+        margin: auto;
+        text-transform: uppercase;
     }
 }
