@@ -1,6 +1,7 @@
 import { component, mixin, createCell, Fragment } from 'web-cell';
 import { observer } from 'mobx-web-cell';
 import classNames from 'classnames';
+import { groupBy } from 'web-utility/source/data';
 
 import { Image } from 'boot-cell/source/Media/Image';
 import { Button } from 'boot-cell/source/Form/Button';
@@ -9,7 +10,13 @@ import { NavLink } from 'boot-cell/source/Navigator/Nav';
 
 import { Gallery } from '../../component/Gallery';
 import style from './2021.module.less';
-import { activity, program } from '../../model';
+import {
+    PartnershipTypes,
+    Partnership,
+    activity,
+    program,
+    partnership
+} from '../../model';
 
 @observer
 @component({
@@ -22,6 +29,7 @@ export class ESC2021Page extends mixin() {
 
         activity.getAll();
         program.getList({ activity: '1', type: 'lecture' });
+        partnership.getAll({ activity: '1' });
 
         super.connectedCallback();
     }
@@ -57,6 +65,49 @@ export class ESC2021Page extends mixin() {
                     View more
                 </Button>
             </>
+        );
+    }
+
+    renderPartners() {
+        const { allItems } = partnership;
+        const {
+            [PartnershipTypes.sponsor]: sponsor,
+            [PartnershipTypes.media]: media,
+            [PartnershipTypes.community]: community
+        } = groupBy(allItems, 'type');
+
+        return (
+            <section className="w-75 mx-auto">
+                {[
+                    ['', sponsor],
+                    ['Media', media],
+                    ['Community', community]
+                ].map(([type, list]: [string, Partnership[]], index) => (
+                    <>
+                        <h2
+                            className={classNames(
+                                'h4',
+                                'text-uppercase',
+                                'text-center',
+                                `text-${index % 2 ? 'primary' : 'warning'}`
+                            )}
+                        >
+                            {type} Partners
+                        </h2>
+                        <ul className="list-unstyled row">
+                            {list?.map(({ organization: { logo } }) => (
+                                <li className="col-3 my-4 d-flex justify-content-center align-items-center">
+                                    <Image
+                                        className={style.partner}
+                                        fluid
+                                        src={logo?.url}
+                                    />
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                ))}
+            </section>
         );
     }
 
@@ -207,6 +258,8 @@ export class ESC2021Page extends mixin() {
                         </footer>
                     </div>
                 </section>
+
+                {this.renderPartners()}
             </>
         );
     }
