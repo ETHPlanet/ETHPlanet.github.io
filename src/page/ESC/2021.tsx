@@ -1,15 +1,14 @@
 import { component, mixin, createCell, Fragment } from 'web-cell';
 import { observer } from 'mobx-web-cell';
-import classNames from 'classnames';
 import { groupBy } from 'web-utility/source/data';
 
 import { Image } from 'boot-cell/source/Media/Image';
 import { Button } from 'boot-cell/source/Form/Button';
+import { Field } from 'boot-cell/source/Form/Field';
 import { NavBar } from 'boot-cell/source/Navigator/NavBar';
 import { NavLink } from 'boot-cell/source/Navigator/Nav';
 
 import { Gallery } from '../../component/Gallery';
-import style from './2021.module.less';
 import {
     PartnershipTypes,
     Partnership,
@@ -17,6 +16,9 @@ import {
     program,
     partnership
 } from '../../model';
+
+import style from './2021.module.less';
+import { footer_links, QAs } from './data';
 
 @observer
 @component({
@@ -38,16 +40,10 @@ export class ESC2021Page extends mixin() {
         const { allItems } = program;
 
         return (
-            <>
-                <ul className="list-unstyled row w-75 mx-auto text-uppercase text-center">
+            <section className="container">
+                <ul className="list-unstyled row text-uppercase text-center">
                     {allItems.map(({ mentors: [speaker] }) => (
-                        <li
-                            className={classNames(
-                                'col-3',
-                                'mt-5',
-                                style.speaker
-                            )}
-                        >
+                        <li className={`col-3 mt-5 ${style.speaker}`}>
                             <Image
                                 className={style.avatar}
                                 src={speaker.avatar?.url}
@@ -64,7 +60,7 @@ export class ESC2021Page extends mixin() {
                 >
                     View more
                 </Button>
-            </>
+            </section>
         );
     }
 
@@ -77,7 +73,7 @@ export class ESC2021Page extends mixin() {
         } = groupBy(allItems, 'type');
 
         return (
-            <section className="w-75 mx-auto">
+            <section className="container">
                 {[
                     ['', sponsor],
                     ['Media', media],
@@ -85,12 +81,9 @@ export class ESC2021Page extends mixin() {
                 ].map(([type, list]: [string, Partnership[]], index) => (
                     <>
                         <h2
-                            className={classNames(
-                                'h4',
-                                'text-uppercase',
-                                'text-center',
-                                `text-${index % 2 ? 'primary' : 'warning'}`
-                            )}
+                            className={`h4 text-uppercase text-center text-${
+                                index % 2 ? 'primary' : 'warning'
+                            }`}
                         >
                             {type} Partners
                         </h2>
@@ -107,6 +100,27 @@ export class ESC2021Page extends mixin() {
                         </ul>
                     </>
                 ))}
+            </section>
+        );
+    }
+
+    renderLinkGroup({ title, list }) {
+        return (
+            <section className="col-4">
+                <h2 className="h5">{title}</h2>
+                <ul className="list-unstyled m-0">
+                    {list.map(({ href, title }) => (
+                        <li>
+                            <a
+                                className="text-dark"
+                                target="_blank"
+                                href={href}
+                            >
+                                {title}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
             </section>
         );
     }
@@ -161,7 +175,7 @@ export class ESC2021Page extends mixin() {
                 <section className="row m-0 bg-light">
                     <div className="col-6 p-5">
                         <h2 className="text-uppercase text-primary">
-                            About Ethereum Summer Camp 2020
+                            About Ethereum Summer Camp 2021
                         </h2>
                         <p className="text-muted">
                             Ethereum Summer Camp is the largest online festival
@@ -206,17 +220,17 @@ export class ESC2021Page extends mixin() {
                 </nav>
 
                 <Gallery
-                    className="w-75 my-5"
+                    className="container my-5"
                     list={allItems.map(({ banner: { url }, name }) => ({
                         image: url,
                         title: name
                     }))}
                 />
                 <h2 className="h3 text-uppercase text-center text-warning my-3">
-                    These Are the First Confirmed Speakers for ESC 2020
+                    These Are the First Confirmed Speakers for ESC 2021
                 </h2>
                 <p className={style.speakerSubTitle}>
-                    Apply to Speak at ESC 2020
+                    Apply to Speak at ESC 2021
                 </p>
                 {this.renderSpeakers()}
 
@@ -260,6 +274,41 @@ export class ESC2021Page extends mixin() {
                 </section>
 
                 {this.renderPartners()}
+
+                <section className="text-center">
+                    <h2 className="h3 text-primary my-3">FAQ</h2>
+
+                    {QAs.map(({ question, answer }, index) => (
+                        <div
+                            className={`p-4 bg-${
+                                index % 2 ? 'white' : 'light'
+                            }`}
+                        >
+                            <h3 className="h5">{question}</h3>
+                            <p className="m-0 text-muted">{answer}</p>
+                        </div>
+                    ))}
+                </section>
+
+                <section className="container py-5 text-uppercase">
+                    <div className="w-75 row d-inline-flex align-top">
+                        {footer_links.map(this.renderLinkGroup)}
+                    </div>
+                    <form className="w-25 m-0 d-inline-block">
+                        <h2 className="h5">
+                            Stay in the loop and sign up for our newsletter
+                        </h2>
+                        <Field type="email" name="email" placeholder="Email" />
+                        <p className="m-0 text-muted">
+                            Help us by donating to ETHPlanet. org and let’s make
+                            Ethereum mainstream, together
+                        </p>
+                    </form>
+                </section>
+
+                <footer className="p-3 font-weight-bold text-uppercase text-center">
+                    Copyright © 2021 ETHPlanet. All rights reserved.
+                </footer>
             </>
         );
     }
