@@ -4,11 +4,27 @@
     --primary: #008aff;
     --warning: #ffc107;
     --info: #a9ecff;
+
     display: block;
     background-image: url(./background-top.png);
     background-repeat: no-repeat;
     background-position: top;
     background-size: contain;
+
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        height: 100%;
+        background-image: url(./background-bottom.png);
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: contain;
+    }
 
     :global {
         .text-primary {
@@ -38,6 +54,9 @@
                 border: var(--info);
                 background: var(--info);
             }
+        }
+        .form-control {
+            border-radius: 0;
         }
     }
     .outNav {
