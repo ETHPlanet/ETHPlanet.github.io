@@ -1,5 +1,7 @@
 import { HTMLHyperLinkProps } from 'web-utility/source/DOM-type';
 
+import { words } from './i18n';
+
 export interface QuestionAnswer {
     question: string;
     answer: string;
@@ -7,8 +9,8 @@ export interface QuestionAnswer {
 
 export const QAs: QuestionAnswer[] = [
     {
-        question: '以太坊开发的小白可以参加吗？',
-        answer: '我们欢迎任何对以太坊感兴趣的个人以及团队参与进来，让以太坊得到更好的发展'
+        question: words.question_1,
+        answer: words.answer_1
     },
     {
         question: '一个团队可以有多少人？',
@@ -23,27 +25,27 @@ export interface LinkGroup {
 
 export const footer_links: LinkGroup[] = [
     {
-        title: 'Quick Links',
+        title: words.quick_links,
         list: [
             {
-                title: 'Apply as a volunteer'
+                title: words.apply_to_be_a_volunteer
             },
             {
-                title: 'Apply as a community partner',
+                title: words.apply_for_community_cooperation,
                 href: 'https://www.notion.so/Join-Us-3bda6e10aaa64c199067068578b080f3'
             },
             {
-                title: 'Terms and conditions',
+                title: words.terms_and_conditions,
                 href: 'https://www.ethplanet.org/zh/terms-of-use/'
             },
             {
-                title: 'Privacy statement',
+                title: words.privacy_policy,
                 href: 'https://www.ethplanet.org/zh/privacy/'
             }
         ]
     },
     {
-        title: 'Connect with Us',
+        title: words.contact_us,
         list: [
             { title: 'Twitter', href: 'https://twitter.com/ethplanet' },
             { title: 'Facebook', href: 'https://www.facebook.com/ethPlanet/' },
@@ -57,16 +59,16 @@ export const footer_links: LinkGroup[] = [
         ]
     },
     {
-        title: 'About',
+        title: words.about,
         list: [
-            { title: 'Team', href: 'https://www.ethplanet.org/zh/about/' },
+            { title: words.teams, href: 'https://www.ethplanet.org/zh/about/' },
             {
-                title: 'Careers',
+                title: words.work,
                 href: 'https://www.notion.so/Join-Us-3bda6e10aaa64c199067068578b080f3'
             },
-            { title: 'News', href: 'https://medium.com/ethplanet' },
+            { title: words.news, href: 'https://medium.com/ethplanet' },
             {
-                title: 'Branding',
+                title: words.brands,
                 href: 'https://www.notion.so/About-ETHPlanet-bb79a415a1b844c2809ebadca62f3899'
             }
         ]

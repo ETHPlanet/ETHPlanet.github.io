@@ -1,1 +1,32 @@
-export enum zh_CN {}
+export enum zh_CN {
+    about_us = '关于我们',
+    schedule = '活动日程',
+    cooperate = '合作通道',
+    ethereum = '以太坊',
+    summer_camp = '之夏',
+    together_with_enthusiasts_build_for_ethereum = '汇聚以太坊爱好者，共同构建以太坊。',
+    introduction = '简介',
+    view_more = '查看更多',
+    opportunity_to_showcase = '展示机会',
+    partners = '合作伙伴',
+    media = '媒体',
+    community = '社区',
+
+    question_1 = '我需要注册吗？',
+    answer_1 = '由于名额有限，我们强烈建议您尽早注册，但所有活动均为免费参加！对于部分研讨会，您需要注册才能参与。所以，请了解更多详情。',
+
+    quick_links = '快速链接',
+    apply_to_be_a_volunteer = '申请成为志愿者',
+    apply_for_community_cooperation = '申请社区合作',
+    terms_and_conditions = '条款与条件',
+    privacy_policy = '隐私政策',
+    about = '关于',
+    teams = '团队',
+    work = '工作',
+    news = '新闻',
+    brands = '品牌',
+    contact_us = '联系我们',
+    subscribe_to_our_email_to_track_the_latest_news = '订阅我们的邮件追踪最新动态',
+    enter_your_email_address = '输入您的电邮地址',
+    we_hope_to_get_your_donation_and_approval__let_s_work_together_to_make_ethereum_becomes_ever_more_successful = '我们希望能获得您的捐助，得到您的认可。让我们一起携手共同发展，让以太坊越来越成功！'
+}

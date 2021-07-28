@@ -1,6 +1,7 @@
 import { component, mixin, createCell, Fragment } from 'web-cell';
 import { observer } from 'mobx-web-cell';
 import { groupBy } from 'web-utility/source/data';
+import { textJoin } from 'web-utility/source/i18n';
 
 import { Image } from 'boot-cell/source/Media/Image';
 import { Button } from 'boot-cell/source/Form/Button';
@@ -18,6 +19,7 @@ import {
 } from '../../model';
 
 import style from './2021.module.less';
+import { words } from './i18n';
 import { footer_links, QAs } from './data';
 
 @observer
@@ -60,7 +62,7 @@ export class ESC2021Page extends mixin() {
                     color="info"
                     onClick={() => program.getList()}
                 >
-                    View more
+                    {words.view_more}
                 </Button>
             </section>
         );
@@ -78,8 +80,8 @@ export class ESC2021Page extends mixin() {
             <section className="container">
                 {[
                     ['', sponsor],
-                    ['Media', media],
-                    ['Community', community]
+                    [words.media, media],
+                    [words.community, community]
                 ].map(([type, list]: [string, Partnership[]], index) => (
                     <>
                         <h2
@@ -87,7 +89,7 @@ export class ESC2021Page extends mixin() {
                                 index % 2 ? 'primary' : 'warning'
                             }`}
                         >
-                            {type} Partners
+                            {textJoin(type, words.partners)}
                         </h2>
                         <ul className="list-unstyled row">
                             {list?.map(({ organization: { logo } }) => (
@@ -150,19 +152,19 @@ export class ESC2021Page extends mixin() {
                         target="_blank"
                         href="https://www.ethplanet.org/zh/about/"
                     >
-                        关于我们
+                        {words.about_us}
                     </NavLink>
-                    <NavLink href="#latest-activities">活动日程</NavLink>
-                    <NavLink href="#become-organizer">合作通道</NavLink>
+                    <NavLink href="#latest-activities">
+                        {words.schedule}
+                    </NavLink>
+                    <NavLink href="#become-organizer">
+                        {words.cooperate}
+                    </NavLink>
                 </NavBar>
                 <header className="row m-0">
                     <div className="col-12 col-md-3 offset-md-2 px-5 px-md-0 py-5 text-uppercase">
                         <h1 className="text-primary">
-                            Ethereum
-                            <br />
-                            Summer
-                            <br />
-                            Camp 2021
+                            {textJoin(words.ethereum, words.summer_camp)} 2021
                         </h1>
                         <p>
                             <strong>8 weeks, 53 days,</strong> the largest
@@ -174,10 +176,11 @@ export class ESC2021Page extends mixin() {
                         </p>
                     </div>
                 </header>
-                <section className="row m-0 bg-light">
+                <section className="row m-0 align-items-center bg-light">
                     <div className="col-12 col-sm-6 px-5 pt-5 pb-sm-5">
                         <h2 className="text-uppercase text-primary">
-                            About Ethereum Summer Camp 2021
+                            {textJoin(words.ethereum, words.summer_camp)} 2021{' '}
+                            {words.introduction}
                         </h2>
                         <p className="text-muted m-0">
                             Ethereum Summer Camp is the largest online festival
@@ -190,17 +193,17 @@ export class ESC2021Page extends mixin() {
                         </p>
                     </div>
                     <ul className="col-12 col-sm-6 p-5 list-unstyled text-muted">
-                        <li className="my-3">
+                        <li className={style.aboutItem}>
                             Be the first to learn about the exciting
                             announcements and the latest updates from Ethereum
                             builders and entrepreneurs, and of course, Eth 2.0!
                         </li>
-                        <li className="my-3">
+                        <li className={style.aboutItem}>
                             Not just hackers, who don’t love a challenge? You
                             will be able to solve some challenges with grants of
                             rewards!
                         </li>
-                        <li className="my-3">
+                        <li className={style.aboutItem}>
                             You will have one-on-one time to meet and greet with
                             other folks! But don’t forget, it’s a summer camp,
                             so, you know, we will have parties, DJs, game
@@ -249,7 +252,8 @@ export class ESC2021Page extends mixin() {
                         style={{ background: 'rgb(255, 235, 199)' }}
                     >
                         <h2 className="h4 text-warning">
-                            展示机会 加入 ESC2021 成为活动发起者
+                            {words.opportunity_to_showcase} / 加入 ESC2021
+                            成为活动发起者
                         </h2>
                         我们可以帮助活动发起者：
                         <ul className="flex-fill">
@@ -306,16 +310,19 @@ export class ESC2021Page extends mixin() {
                     <div className="row">
                         <form className="col-12 col-md-3 m-0 order-md-1">
                             <h2 className="h5">
-                                Stay in the loop and sign up for our newsletter
+                                {
+                                    words.subscribe_to_our_email_to_track_the_latest_news
+                                }
                             </h2>
                             <Field
                                 type="email"
                                 name="email"
-                                placeholder="Email"
+                                placeholder={words.enter_your_email_address}
                             />
                             <p className="mb-5 m-md-0 text-muted">
-                                Help us by donating to ETHPlanet. org and let’s
-                                make Ethereum mainstream, together
+                                {
+                                    words.we_hope_to_get_your_donation_and_approval__let_s_work_together_to_make_ethereum_becomes_ever_more_successful
+                                }
                             </p>
                         </form>
                         <div className="col-12 col-md-9 row order-md-0">

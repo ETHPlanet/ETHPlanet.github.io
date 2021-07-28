@@ -1,1 +1,32 @@
-export enum en_US {}
+export enum en_US {
+    about_us = 'About us',
+    schedule = 'Schedule',
+    cooperate = 'Cooperate',
+    ethereum = 'Ethereum',
+    summer_camp = 'Summer Camp',
+    together_with_enthusiasts_build_for_ethereum = 'Together with enthusiasts, build for Ethereum',
+    introduction = 'Introduction',
+    view_more = 'View more',
+    opportunity_to_showcase = 'Opportunity to showcase',
+    partners = 'Partners',
+    media = 'Media',
+    community = 'Community',
+
+    question_1 = 'Do I need to register?',
+    answer_1 = 'Due to the limited quota of registration, we strongly recommend you register as early as possible. All activities are free to join, while for some seminars, you need to register to participate. Please know more details of events.',
+
+    quick_links = 'Quick links',
+    apply_to_be_a_volunteer = 'Apply to be a volunteer',
+    apply_for_community_cooperation = 'Apply for community cooperation',
+    terms_and_conditions = 'Terms and Conditions',
+    privacy_policy = 'Privacy Policy',
+    about = 'About',
+    teams = 'Teams',
+    work = 'Work',
+    news = 'News',
+    brands = 'Brands',
+    contact_us = 'Contact Us',
+    subscribe_to_our_email_to_track_the_latest_news = 'Subscribe to our email to track the latest news',
+    enter_your_email_address = 'Enter your email address',
+    we_hope_to_get_your_donation_and_approval__let_s_work_together_to_make_ethereum_becomes_ever_more_successful = 'We hope to get your donation and approval. Let‘s work together to make Ethereum becomes ever more successful!'
+}
