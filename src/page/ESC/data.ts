@@ -13,8 +13,16 @@ export const QAs: QuestionAnswer[] = [
         answer: words.answer_1
     },
     {
-        question: '一个团队可以有多少人？',
-        answer: ''
+        question: words.question_2,
+        answer: words.answer_2
+    },
+    {
+        question: words.question_3,
+        answer: words.answer_3
+    },
+    {
+        question: words.question_4,
+        answer: words.answer_4
     }
 ];
 

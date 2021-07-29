@@ -13,4 +13,8 @@ export const { words } = bootI18n({
     'en-US': en_US
 });
 
+export const dateFormatter = new Intl.DateTimeFormat(navigator.language, {
+    dateStyle: 'long'
+});
+
 self.addEventListener('languagechange', () => self.location.reload());

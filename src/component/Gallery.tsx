@@ -16,7 +16,7 @@ export function Gallery({ className, list, ...props }: GalleryProps) {
     list = list.slice(0, 4);
 
     return (
-        <section
+        <div
             className={classNames('row', 'mx-auto', style.box, className)}
             {...props}
         >
@@ -41,6 +41,6 @@ export function Gallery({ className, list, ...props }: GalleryProps) {
                     </li>
                 ))}
             </ul>
-        </section>
+        </div>
     );
 }
