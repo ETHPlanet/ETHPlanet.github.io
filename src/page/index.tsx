@@ -5,7 +5,6 @@ import { history } from '../model';
 import WebCell_0 from '../image/WebCell-0.png';
 
 import { ESC2021Page } from './ESC/2021';
-import { CellClock } from './Clock';
 
 export function PageFrame() {
     return (
@@ -15,11 +14,7 @@ export function PageFrame() {
                 history={history}
                 routes={[
                     {
-                        paths: ['clock'],
-                        component: CellClock
-                    },
-                    {
-                        paths: ['hello', ''],
+                        paths: [''],
                         component: ESC2021Page
                     }
                 ]}
