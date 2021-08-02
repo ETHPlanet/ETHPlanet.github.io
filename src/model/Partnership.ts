@@ -24,6 +24,6 @@ export interface Partnership extends BaseData {
 }
 
 export class PartnershipModel extends CollectionModel<Partnership> {
-    name = 'partner_ship';
-    basePath = 'partner-ships';
+    name = 'partnership';
+    basePath = 'partnerships';
 }

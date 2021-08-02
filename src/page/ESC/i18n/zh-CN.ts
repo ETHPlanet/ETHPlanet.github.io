@@ -7,7 +7,8 @@ export enum zh_CN {
     together_with_enthusiasts_build_for_ethereum = '汇聚以太坊爱好者，共同构建以太坊。',
 
     introduction = '简介',
-    introduction_0 = '以太坊之夏（Ethereum Summer Camp）是以太坊社区的线上盛事之一，涵盖各种线上见面会、工作坊、培训、竞赛等交流活动。',
+    introduction_01 = '以太坊之夏（Ethereum Summer Camp）是以太坊社区的线上盛事之一，涵盖各种线上见面会、工作坊、培训、竞赛等交流活动。',
+    introduction_02 = '今年，Ethereum Summer Camp 将全面开放官方平台，鼓励以太坊社区及其他合作伙伴在以太坊夏令营的平台上创建活动、举办活动，合作交流，共同推广以太坊生态建设，让更多的人了解和共识以太坊的价值所在。您所想了解的 ETH2.0、Layer2、Metaverse、NFT 以及开源平台等统统都在这里！',
     introduction_1 = '抢先了解各种精彩资讯，以及以太坊开发人员和企业家最新动态，当然还有备受关注的 ETH 2.0 项目！',
     introduction_2 = '我们将分享以太坊有关的资源，通过各种活动和研讨会，让学员了解更多技术信息，获得更多灵感和启发。',
     introduction_3 = '此外，还能够结识更多同行，进行一对一的沟通交流！最后，别忘了，这是一个以太坊之夏活动，当然不会少了各种流行文化交流、狂欢派对、音乐活动和游戏比赛，一起加入我们吧！',

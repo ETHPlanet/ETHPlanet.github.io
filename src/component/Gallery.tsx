@@ -8,8 +8,13 @@ import {
 
 import style from './Gallery.module.less';
 
+export interface GalleryItem
+    extends Required<Pick<CarouselItemProps, 'image' | 'title'>> {
+    path: string;
+}
+
 export interface GalleryProps extends WebCellProps {
-    list: Required<Pick<CarouselItemProps, 'image' | 'title'>>[];
+    list: GalleryItem[];
 }
 
 export function Gallery({ className, list, ...props }: GalleryProps) {
@@ -21,8 +26,15 @@ export function Gallery({ className, list, ...props }: GalleryProps) {
             {...props}
         >
             <CarouselView className="col-9 p-0">
-                {list.map(({ image }) => (
-                    <CarouselItem image={image} />
+                {list.map(({ image, path }) => (
+                    <CarouselItem image={image}>
+                        <a
+                            className={style.image}
+                            style={{ backgroundImage: `url(${image})` }}
+                            target="_blank"
+                            href={path}
+                        />
+                    </CarouselItem>
                 ))}
             </CarouselView>
             <ul className="list-unstyled m-0 p-0 col-3 d-flex flex-column">

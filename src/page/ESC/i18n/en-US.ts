@@ -7,7 +7,8 @@ export enum en_US {
     together_with_enthusiasts_build_for_ethereum = 'Together with enthusiasts, build for Ethereum',
 
     introduction = 'Introduction',
-    introduction_0 = 'Ethereum Summer Camp is one of the most prosperous online events in the Ethereum community, covering online meetings, workshops, training, competitions and various communication activities.',
+    introduction_01 = 'Ethereum Summer Camp is one of the most prosperous online events in the Ethereum community, covering online meetings, workshops, training, competitions and various communication activities.',
+    introduction_02 = '',
     introduction_1 = 'Be first to know all kinds of exciting information, including trending topics for developers and entrepreneurs, and the most attractive ETH 2.0!',
     introduction_2 = 'We would like to share Ethereum-related resources, inspire participants with various activities and seminars, and plenty of technical information.',
     introduction_3 = 'Besides, you can also get to know more friends and have one-on-one discussions! Finally, don’t forget, this is a summer camp. There certainly will be culture exchanges, carnivals, music parties, and games. Join us now!',

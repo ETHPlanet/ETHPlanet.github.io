@@ -1,5 +1,6 @@
 import { component, mixin, createCell, Fragment } from 'web-cell';
 import { observer } from 'mobx-web-cell';
+import { service } from 'mobx-strapi';
 import { groupBy } from 'web-utility/source/data';
 import { textJoin } from 'web-utility/source/i18n';
 
@@ -21,6 +22,7 @@ import {
 import style from './2021.module.less';
 import { dateFormatter, words } from './i18n';
 import { footer_links, QAs } from './data';
+import { Program } from '../../model/Program';
 
 const ActivityTitle = `${textJoin(words.ethereum, words.summer_camp)} 2021`;
 
@@ -41,24 +43,26 @@ export class ESC2021Page extends mixin() {
         super.connectedCallback();
     }
 
+    renderAvatar({ mentors: [speaker] }: Program) {
+        return (
+            <li className={`col-sm-6 col-md-3 mt-5 ${style.speaker}`}>
+                <Image
+                    className={style.avatar}
+                    src={new URL(speaker.avatar?.url, service.baseURI) + ''}
+                />
+                <h3 className="h4 my-2">{speaker.name}</h3>
+                <p className={style.summary}>{speaker.summary}</p>
+            </li>
+        );
+    }
+
     renderSpeakers() {
         const { allItems } = program;
 
         return (
             <section className="container">
                 <ul className="list-unstyled row text-uppercase text-center">
-                    {allItems.map(({ mentors: [speaker] }) => (
-                        <li
-                            className={`col-sm-6 col-md-3 mt-5 ${style.speaker}`}
-                        >
-                            <Image
-                                className={style.avatar}
-                                src={speaker.avatar?.url}
-                            />
-                            <h3 className="h4 my-2">{speaker.name}</h3>
-                            <p className={style.summary}>{speaker.summary}</p>
-                        </li>
-                    ))}
+                    {allItems.map(this.renderAvatar)}
                 </ul>
                 <Button
                     className={style.loadSpeaker}
@@ -68,6 +72,20 @@ export class ESC2021Page extends mixin() {
                     {words.view_more}
                 </Button>
             </section>
+        );
+    }
+
+    renderLogo({ organization: { link, logo } }: Partnership) {
+        return (
+            <li className="col-sm-6 col-md-3 my-4 d-flex justify-content-center align-items-center">
+                <a target="_blank" href={link}>
+                    <Image
+                        className={style.partner}
+                        fluid
+                        src={new URL(logo?.url, service.baseURI) + ''}
+                    />
+                </a>
+            </li>
         );
     }
 
@@ -95,15 +113,7 @@ export class ESC2021Page extends mixin() {
                             {textJoin(type, words.partners)}
                         </h2>
                         <ul className="list-unstyled row">
-                            {list?.map(({ organization: { logo } }) => (
-                                <li className="col-sm-6 col-md-3 my-4 d-flex justify-content-center align-items-center">
-                                    <Image
-                                        className={style.partner}
-                                        fluid
-                                        src={logo?.url}
-                                    />
-                                </li>
-                            ))}
+                            {list?.map(this.renderLogo)}
                         </ul>
                     </>
                 ))}
@@ -134,7 +144,7 @@ export class ESC2021Page extends mixin() {
 
     render() {
         const {
-            current: { start_time, end_time },
+            current: { start_time = Date.now(), end_time = Date.now() },
             allItems
         } = activity;
 
@@ -150,7 +160,7 @@ export class ESC2021Page extends mixin() {
                         <img
                             alt="ETH Planet"
                             src="https://github.com/ETHPlanet.png"
-                            style={{ width: '2rem' }}
+                            style={{ width: '5rem' }}
                         />
                     }
                 >
@@ -184,7 +194,14 @@ export class ESC2021Page extends mixin() {
                         <h2 className="text-uppercase text-primary">
                             {ActivityTitle} {words.introduction}
                         </h2>
-                        <p className="text-muted m-0">{words.introduction_0}</p>
+                        <p className="text-muted my-3">
+                            {words.introduction_01}
+                        </p>
+                        {words.introduction_02 && (
+                            <p className="text-muted my-3">
+                                {words.introduction_02}
+                            </p>
+                        )}
                     </div>
                     <ul className="col-12 col-sm-6 p-5 list-unstyled text-muted">
                         <li className={style.aboutItem}>
@@ -217,18 +234,28 @@ export class ESC2021Page extends mixin() {
 
                 <section className="container my-5" id="latest-activities">
                     <Gallery
-                        list={allItems.map(({ banner: { url }, name }) => ({
-                            image: url,
-                            title: name
-                        }))}
+                        list={allItems
+                            .filter(({ id }) => +id !== 1)
+                            .map(({ banner, name, location }) => ({
+                                image:
+                                    banner?.url &&
+                                    new URL(banner.url, service.baseURI) + '',
+                                title: name,
+                                path: location
+                            }))}
                     />
                 </section>
                 <h2 className="h3 text-uppercase text-center text-warning my-3">
                     {words.the_first_confirmed_speakers}
                 </h2>
-                <p className={style.speakerSubTitle}>
+                <Button
+                    className={style.speakerSubTitle}
+                    color="warning"
+                    target="_blank"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLScVrWC7uIa4oGzbR1_kpvCBEChppsOQfChIhSqqMgBt_xD5_g/viewform"
+                >
                     {words.apply_to_be_a_speaker}
-                </p>
+                </Button>
                 {this.renderSpeakers()}
 
                 <section className="row mx-0 my-5">
@@ -247,7 +274,11 @@ export class ESC2021Page extends mixin() {
                             <li>{words.organizer_2}</li>
                         </ul>
                         <footer>
-                            <Button color="warning">
+                            <Button
+                                color="warning"
+                                target="_blank"
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSfufBuV7VuLAwQcSKlUX9qagjxS_V4Qq7WTLoaztEpFSAFgAw/viewform"
+                            >
                                 {words.apply_to_initiate_an_ethereum_event}
                             </Button>
                         </footer>
@@ -267,7 +298,11 @@ export class ESC2021Page extends mixin() {
                             <li>{words.sponsor_3}</li>
                         </ul>
                         <footer>
-                            <Button color="primary">
+                            <Button
+                                color="primary"
+                                target="_blank"
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSf0OKNPE2GQrdT-h7yjCwTIOPNgdqXe_QgoAu3PMo6ADGA5pw/viewform"
+                            >
                                 {words.apply_to_be_a_sponsor}
                             </Button>
                         </footer>
