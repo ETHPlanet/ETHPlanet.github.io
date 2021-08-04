@@ -123,7 +123,7 @@ export class ESC2021Page extends mixin() {
 
     renderLinkGroup({ title, list }) {
         return (
-            <section className="col-12 col-sm-4 mb-4">
+            <section className="col-6 col-sm-4 mb-4">
                 <h2 className="h5">{title}</h2>
                 <ul className="list-unstyled m-0">
                     {list.map(({ href, title }) => (

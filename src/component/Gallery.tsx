@@ -25,7 +25,7 @@ export function Gallery({ className, list, ...props }: GalleryProps) {
             className={classNames('row', 'mx-auto', style.box, className)}
             {...props}
         >
-            <CarouselView className="col-9 p-0">
+            <CarouselView className="col-12 col-sm-9 p-0">
                 {list.map(({ image, path }) => (
                     <CarouselItem image={image}>
                         <a
@@ -37,7 +37,7 @@ export function Gallery({ className, list, ...props }: GalleryProps) {
                     </CarouselItem>
                 ))}
             </CarouselView>
-            <ul className="list-unstyled m-0 p-0 col-3 d-flex flex-column">
+            <ul className="list-unstyled m-0 p-0 d-none col-sm-3 d-sm-flex flex-column">
                 {list.map(({ title }, index) => (
                     <li
                         className={style.navItem}
